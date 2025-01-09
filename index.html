@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple MP3 Player</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+            text-align: center;
+        }
+        audio {
+            width: 80%;
+            max-width: 600px;
+            margin: 20px 0;
+        }
+        .file-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .file-list li {
+            margin: 10px 0;
+        }
+        .file-list button {
+            padding: 10px;
+            background-color: #1db954;
+            border: none;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .file-list button:hover {
+            background-color: #1aa34a;
+        }
+    </style>
+</head>
+<body>
+
+<h1>MP3 Player</h1>
+<audio id="audioPlayer" controls>
+    <source id="audioSource" src="" type="audio/mpeg">
+    Your browser does not support the audio tag.
+</audio>
+
+<ul class="file-list" id="fileList"></ul>
+
+<script>
+    // Function to list MP3 files in the directory
+    function listMP3Files() {
+        // This is a placeholder for the actual file listing logic
+        // In a real application, you would fetch this list from the server
+        const files = ['rageofchampions.mp3', '4bravechampions.mp3', 'simplesight.mp3']; // Replace with actual file names
+
+        const fileList = document.getElementById('fileList');
+        files.forEach(file => {
+            const li = document.createElement('li');
+            const button = document.createElement('button');
+            button.textContent = file;
+            button.onclick = () => playAudio(file);
+            li.appendChild(button);
+            fileList.appendChild(li);
+        });
+    }
+
+    // Function to play the selected audio
+    function playAudio(file) {
+        const audioPlayer = document.getElementById('audioPlayer');
+        const audioSource = document.getElementById('audioSource');
+        audioSource.src = file;
+        audioPlayer.load();
+        audioPlayer.play();
+    }
+
+    // Call the function to list MP3 files
+    listMP3Files();
+</script>
+
+</body>
+</html>
